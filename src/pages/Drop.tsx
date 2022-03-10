@@ -14,6 +14,7 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 import { VscLoading } from "react-icons/vsc";
 import { GiPartyPopper } from "react-icons/gi";
 import { HiOutlineExternalLink } from "react-icons/hi";
+import { useLocalStorage } from "../shared/hooks";
 
 function Drop() {
   const bundlr = useContext(Bundlr);
@@ -26,6 +27,7 @@ function Drop() {
   const [step, setStep] = useState<
     "waiting" | "hovering" | "loading" | "confirming" | "uploading" | "done"
   >("waiting");
+  const [sites, setSites] = useLocalStorage<Site[]>("sites", []);
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -139,6 +141,16 @@ function Drop() {
         ]
       );
       setId(response.data.id);
+      setSites([
+        ...sites,
+        {
+          id: response.data.id,
+          manifest,
+          timestamp: Date.now(),
+          bytes,
+          price: bundlr.utils.unitConverter(price).toFixed(4, 0),
+        },
+      ]);
       setStep("done");
     } catch (e: any) {
       setStep("confirming");

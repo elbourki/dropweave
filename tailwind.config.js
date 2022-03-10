@@ -7,6 +7,7 @@ module.exports = {
       colors: {
         muted: "#30363d",
         highlight: "#21262d",
+        dark: "#0d1117",
       },
       fontFamily: {
         sans: ["DM Sans", ...defaultTheme.fontFamily.sans],

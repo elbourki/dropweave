@@ -23,6 +23,14 @@ interface Manifest {
   };
 }
 
+interface Site {
+  id: string;
+  timestamp: number;
+  manifest: Manifest;
+  bytes: number;
+  price: string;
+}
+
 interface Window {
   ethereum: any;
 }

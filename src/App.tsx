@@ -80,7 +80,7 @@ function App() {
   return (
     <Bundlr.Provider value={bundlr}>
       <div className="flex flex-col min-h-screen text-white max-w-3xl mx-auto py-7 px-7">
-        <header className="flex justify-between items-center pb-7">
+        <header className="flex justify-between items-center pb-7 flex-col sm:flex-row gap-4">
           <div className="border-2 border-muted rounded-3xl p-1 text-sm">
             {[
               ["/", "New drop"],
