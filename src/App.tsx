@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Routes, Route, NavLink } from "react-router-dom";
+import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
 import { Web3Provider } from "@ethersproject/providers";
 import { WebBundlr } from "@bundlr-network/client/build/web";
 import Drop from "./pages/Drop";
@@ -9,6 +9,16 @@ import { notyf } from "./shared/notyf";
 import jazzicon from "@metamask/jazzicon";
 import { truncateAddress } from "./shared/helpers";
 import { IoWalletOutline } from "react-icons/io5";
+
+function Redirect({ to }: { to: string }) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate(to);
+  });
+
+  return null;
+}
 
 function App() {
   const [bundlr, setBundlr] = useState<WebBundlr | null>(null);
@@ -118,6 +128,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Drop />} />
           <Route path="sites" element={<Sites />} />
+          <Route path="*" element={<Redirect to="/" />} />
         </Routes>
       </div>
     </Bundlr.Provider>
