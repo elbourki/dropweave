@@ -49,7 +49,7 @@ export default defineConfig({
   build: {
     target: "es2020",
     rollupOptions: {
-      plugins: [inject({ Buffer: ["Buffer", "Buffer"] })],
+      plugins: [inject({ Buffer: ["buffer", "Buffer"] })],
     },
   },
 });
